@@ -22,6 +22,8 @@ libraryDependencies += "com.netflix.rxjava" % "rxjava-scala" % "0.19.2"
 
 libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2"
 
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.4"
+
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.1.2" % "runtime"
 
 libraryDependencies += "org.slf4j" % "jcl-over-slf4j" % "1.7.7" % "runtime"
