@@ -11,6 +11,9 @@ import io.github.reggert.reactivexmpp.config.ProxyType
 import org.jivesoftware.smack.ConnectionConfiguration.{SecurityMode => JiveSecurityMode}
 import io.github.reggert.reactivexmpp.config.SecurityMode
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
+import org.jivesoftware.smack.ConnectionListener
+import io.github.reggert.reactivexmpp.event.ConnectionEvent
+import rx.lang.scala.Subject
 
 class InternalXMPPAgent(connectionParameters : ConnectionParameters, loginCredentials : LoginCredentials, resource : String) 
 {
@@ -46,6 +49,12 @@ class InternalXMPPAgent(connectionParameters : ConnectionParameters, loginCreden
 	}
 	
 	private val connection = new XMPPTCPConnection(connectionConfiguration)
+	
+	private val connectionSubject = Subject[ConnectionEvent]
+	connection.addConnectionListener(ConnectionListenerAdapter(connectionSubject))
+	
 	connection.connect()
 	connection.login(loginCredentials.username, loginCredentials.password, resource)
+	
+	
 }
